@@ -7,4 +7,4 @@ Distance based unsupervised clustering of the gene expression data is commonly u
 PBS is a software package that assesses the biological differences between samples using gene expression data by assuming that ontologically defined biological pathways in biologically similar samples have similar behavior. This package includes three parts: simulation, pathways and pbs_distance.
 
 ##References
-Yan X, Chu JH, Gomez J, Koenigs M, Holm C, He X, Perez MF, Zhao H, Mane S, Martinez FD, Ober C, Nicolae DL, Barnes KC, London SJ, Gilliland F, Weiss ST, Raby BA, Cohn L, Chupp GL. 2015. Noninvasive analysis of the sputum transcriptome discriminates clinical phenotypes of asthma. Am J Respir Crit Care Med. 191(10):1116-25. 
+Yan X, Chu JH, Gomez J, Koenigs M, Holm C, He X, Perez MF, Zhao H, Mane S, Martinez FD, Ober C, Nicolae DL, Barnes KC, London SJ, Gilliland F, Weiss ST, Raby BA, Cohn L, Chupp GL. 2015. [Noninvasive analysis of the sputum transcriptome discriminates clinical phenotypes of asthma](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4451618/). Am J Respir Crit Care Med. 191(10):1116-25. 
