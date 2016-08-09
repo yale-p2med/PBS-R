@@ -17,7 +17,7 @@ You need to install R release 3.0 or later.
 - Unzip the file PBS-R.ZIP using the option to create subdirectories.
   This should create the following files and subdirectories:
 
-PBS program and functions in R (all the PBS code is conatined there):
+..*PBS program and functions in R (all the PBS code is conatined there):
 
 -- PBS-R/PBS.1.0.R        
 
