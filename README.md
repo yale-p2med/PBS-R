@@ -13,13 +13,13 @@ PBS is a software package that assesses the biological differences between sampl
 
 ## Instructions
 You need to install R release 3.0 or later.
-- Copy the PBS-R.ZIP file to your computer. 
-- Unzip the file PBS-R.ZIP using the option to create subdirectories.
+1. Copy the PBS-R.ZIP file to your computer. 
+2. Unzip the file PBS-R.ZIP using the option to create subdirectories.
   This should create the following files and subdirectories:
 
 * PBS program and functions in R (all the PBS code is conatined there):
 
--- PBS-R/PBS.1.0.R        
+. PBS-R/PBS.1.0.R        
 
 Directory with example datasets, gct file:
 
