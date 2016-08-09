@@ -22,59 +22,55 @@ You need to install R release 3.0 or later.
   * PBS program and functions in R (all the PBS code is conatined there):
 
     ```
-    PBS-R/PBS.1.0.R        
+    PBS-R/PBS.1.0.R
+    PBS-R/simulation.R
     ```
 
   * Directory with example datasets, gct file:
     ```
     PBS-R/Datasets/        
                     asthma.gct
+                    simul1_independent.gct
+                    simul1_depedent.gct
     ```
   * Directory with gene set databases, gmt files:
     ```
-    GSEA/GSEA-P-R/GeneSetDatabases/
-                                   C1.gmt
-                                   C2.gmt
-                                   C3.gmt
-                                   C4.gmt
-                                   Lung_Boston_poor_outcome.gmt
-                                   Lung_Michigan_poor_outcome.g
+    PBS-R/GeneSetDatabases/
+                            C1.gmt
+                            C2.gmt
+                            C3.gmt
+                            C4.gmt
+                            Lung_Boston_poor_outcome.gmt
+                            Lung_Michigan_poor_outcome.g
     ```
   * Directories with results of running the examples described in the paper:
     ```
-    GSEA/GSEA-P-R/Gender_C1/
-                            Gender_C2
-                            Leukemia_C1
-                            Lung_Boston_C2
-                            Lung_Stanford_C2 
-                            Lung_Michigan_C2
-                            Lung_Boston_outcome 
-                            Lung_Michigan_outcome
-                            P53_C2
+    PBS-R/asthma_C2/
+                      asthma
     ```
-The top 20 high scoring gene sets are reported in table S2 (Supporting Information).
 
-One page R scripts to run the examples described in the paper:
+  * One page R scripts to run the examples described in the paper:
+    ```
+    GSEA/GSEA-P-R/
+                  Run.Gender_C1.R
+                  Run.Gender_C2.R
+                  Run.Leukemia_C1.R
+                  Run.Lung_Boston_C2.R
+                  Run.Lung_Stanford_C2.R
+                  Run.Lung_Michigan_C2.R
+                  Run.Lung_Boston_outcome.R
+                  Run.Lung_Michigan_outcome.R
+                  Run.P53_C2.R
+    ```
 
-  GSEA/GSEA-P-R/
-                Run.Gender_C1.R
-                Run.Gender_C2.R
-                Run.Leukemia_C1.R
-                Run.Lung_Boston_C2.R
-                Run.Lung_Stanford_C2.R
-                Run.Lung_Michigan_C2.R
-                Run.Lung_Boston_outcome.R
-                Run.Lung_Michigan_outcome.R
-                Run.P53_C2.R
-
-To run, for example, the Leukemia dataset with the C1 gene set database go to the file GSEA/GSEA-P-R/Run.Leukemia_C1.R and change the file pathnames to reflect the location of the GSEA directory in your machine. For example if you expanded the ZIP file under your directory "C:/my_directory" you need to change the line: 
-
+To run, for example, the simulated dataset 1 with independent setting with the C2 gene set database go to the file PBS-R/Run.Simul1_C2.R and change the file pathnames to reflect the location of the GSEA directory in your machine. For example if you expanded the ZIP file under your directory "C:/my_directory" you need to change the line: 
+```
 GSEA.program.location <- "d:/CGP2005/GSEA/GSEA-P-R/GSEA.1.0.R"  
-
+```
 To:
-
+```
 GSEA.program.location <- "c:my_directory/GSEA/GSEA-P-R/GSEA.1.0.R"
-
+```
  And the same change to each pathname in that file: you need to replace "d:/CGP2005" with "C"/my_directory".
 
  You may also want to change the line:
