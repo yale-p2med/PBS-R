@@ -19,40 +19,27 @@ You need to install R release 3.0 or later.
 2. Unzip the file PBS-R.ZIP using the option to create subdirectories.
   This should create the following files and subdirectories:
 
-* PBS program and functions in R (all the PBS code is conatined there):
+  * PBS program and functions in R (all the PBS code is conatined there):
 
   ```
   PBS-R/PBS.1.0.R        
   ```
 
-Directory with example datasets, gct file:
-
-PBS-R/Datasets/        
-                        test.txt
-                         Gender.gct
-                         Gender.cls
-                         Leukemia.gct
-                         Leukemia.cls
-                         Lung_Boston.gct
-                         Lung_Boston.cls
-                         Lung_Michigan.gct
-                         Lung_Michigan.cls
-                         Lung_Stanford.gct
-                         Lung_Stanford.cls
-                         Lung_Bost_maxed_common_Mich_Bost.gct
-                         Lung_Mich_maxed_common_Mich_Bost.gct
-                         P53.gct
-                         P53.cls
-
-Directory with gene set databases, gmt files:
+  * Directory with example datasets, gct file:
+  ```
+  PBS-R/Datasets/        
+                  asthma.gct
+  ```
+  * Directory with gene set databases, gmt files:
+  ```
   GSEA/GSEA-P-R/GeneSetDatabases/
                                  C1.gmt
                                  C2.gmt
                                  C3.gmt
                                  C4.gmt
                                  Lung_Boston_poor_outcome.gmt
-                                 Lung_Michigan_poor_outcome.gmt
-
+                                 Lung_Michigan_poor_outcome.g
+  ```
 Directories with results of running the examples described in the paper:
 
   GSEA/GSEA-P-R/Gender_C1/
