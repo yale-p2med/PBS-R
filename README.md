@@ -40,8 +40,6 @@ You need to install R release 3.0 or later.
                             C2.gmt
                             C3.gmt
                             C4.gmt
-                            Lung_Boston_poor_outcome.gmt
-                            Lung_Michigan_poor_outcome.gmt
     ```
   * Directories with results of running the examples described in the paper:
     ```
