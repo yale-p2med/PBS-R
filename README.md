@@ -21,37 +21,37 @@ You need to install R release 3.0 or later.
 
   * PBS program and functions in R (all the PBS code is conatined there):
 
-  ```
-  PBS-R/PBS.1.0.R        
-  ```
+    ```
+    PBS-R/PBS.1.0.R        
+    ```
 
   * Directory with example datasets, gct file:
-  ```
-  PBS-R/Datasets/        
-                  asthma.gct
-  ```
+    ```
+    PBS-R/Datasets/        
+                    asthma.gct
+    ```
   * Directory with gene set databases, gmt files:
-  ```
-  GSEA/GSEA-P-R/GeneSetDatabases/
-                                 C1.gmt
-                                 C2.gmt
-                                 C3.gmt
-                                 C4.gmt
-                                 Lung_Boston_poor_outcome.gmt
-                                 Lung_Michigan_poor_outcome.g
-  ```
-Directories with results of running the examples described in the paper:
-
-  GSEA/GSEA-P-R/Gender_C1/
-                          Gender_C2
-                          Leukemia_C1
-                          Lung_Boston_C2
-                          Lung_Stanford_C2 
-                          Lung_Michigan_C2
-                          Lung_Boston_outcome 
-                          Lung_Michigan_outcome
-                          P53_C2
-
+    ```
+    GSEA/GSEA-P-R/GeneSetDatabases/
+                                   C1.gmt
+                                   C2.gmt
+                                   C3.gmt
+                                   C4.gmt
+                                   Lung_Boston_poor_outcome.gmt
+                                   Lung_Michigan_poor_outcome.g
+    ```
+  * Directories with results of running the examples described in the paper:
+    ```
+    GSEA/GSEA-P-R/Gender_C1/
+                            Gender_C2
+                            Leukemia_C1
+                            Lung_Boston_C2
+                            Lung_Stanford_C2 
+                            Lung_Michigan_C2
+                            Lung_Boston_outcome 
+                            Lung_Michigan_outcome
+                            P53_C2
+    ```
 The top 20 high scoring gene sets are reported in table S2 (Supporting Information).
 
 One page R scripts to run the examples described in the paper:
