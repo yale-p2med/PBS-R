@@ -23,6 +23,7 @@ PBS-R/PBS.1.0.R
 
 Directory with example datasets, gct file:
   PBS-R/Datasets/        
+                        test.txt
                          Gender.gct
                          Gender.cls
                          Leukemia.gct
