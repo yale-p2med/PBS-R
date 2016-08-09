@@ -19,14 +19,9 @@ You need to install R release 3.0 or later.
 
 PBS program and functions in R (all the PBS code is conatined there):
 
-PBS-R/PBS.1.0.R        
+-- PBS-R/PBS.1.0.R        
 
 Directory with example datasets, gct file:
-| Tables        | Are           |
-| ------------- |:-------------:|
-| col 3 is      | right-aligned |
-| col 2 is      | centered      |
-| zebra stripes | are neat      |
 
   PBS-R/Datasets/        
                         test.txt
