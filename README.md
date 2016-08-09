@@ -27,13 +27,16 @@ You need to install R release 3.0 or later.
     ```
 
   * Directory with example datasets, gct file:
+
     ```
     PBS-R/Datasets/        
                     asthma.gct
                     simul1_independent.gct
                     simul1_depedent.gct
     ```
+
   * Directory with gene set databases, gmt files:
+
     ```
     PBS-R/GeneSetDatabases/
                             C1.gmt
@@ -41,6 +44,7 @@ You need to install R release 3.0 or later.
                             C3.gmt
                             C4.gmt
     ```
+
   * Directories with results of running the examples described in the paper:
     ```
     PBS-R/asthma_C2/
