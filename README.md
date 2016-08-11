@@ -70,7 +70,7 @@ You need to install R release 3.0 or later.
 ###To simulate
 There are two ways to simulate data sets as described in the manuscript, **independent** and **dependent**.
 
-The independent way simulate data by assumming that genes are independent from each other. The function to use for this simulation is simul.independent defined in the simulation_codes.R file. For explanation of the arguments and the return values, please read the comments in simulation_codes.R for the function simul.independent. To run the simulation using array annotation from Affymetrix GeneChip® Human Gene 1.0 ST Array and the KEGG pathways downloaded from MsigDB, for example, by assumming that 20% of the pathways being perturbed, 30% of the genes in the perturbed pathways being perturbed, the avarage differences between groups being 0.7, the number of groups being 3, the number of samples from each group being 40, and the numer of simulatio being 100, run the following commands in R:
+The independent way simulates data by assumming that genes are independent from each other. The function to use for this simulation is simul.independent defined in the simulation_codes.R file. For explanation of the arguments and the return values, please read the comments in simulation_codes.R for the function simul.independent. To run the simulation using array annotation from Affymetrix GeneChip® Human Gene 1.0 ST Array and the KEGG pathways downloaded from MsigDB, for example, by assumming that 20% of the pathways being perturbed, 30% of the genes in the perturbed pathways being perturbed, the avarage differences between groups being 0.7, the number of groups being 3, the number of samples from each group being 40, and the numer of simulatio being 100, first set the working directory to be the folder where you unzip PBS-R.zip. Then run the following commands in R to save all the simulated datasets to my_simulation under your PBS-R folder:
 
 ```
 source("simulation_codes.R")
@@ -81,7 +81,18 @@ output.dir<-"./my_simulation"
 simul.independent(0.2,0.3,0.7,3,40,msigdb.filepath,pathway.name.prefix,output.dir,100,array.anno.filepath)
 ```
 
-To run, for example, the simulated dataset 1 with independent setting with the C2 gene set database go to the file PBS-R/Run.Simul1_C2.R and change the file pathnames to reflect the location of the GSEA directory in your machine. For example if you expanded the ZIP file under your directory "C:/my_directory" you need to change the line: 
+The dependent way simulates data assumming that genes are dependent with each other. The function to use for this simulation is simul.dependent defined in the simulation_codes.R file. For explanation of the arguments and the return values, please read the comments in simulation_codes.R for the function simul.dependent. To run the simulation using array annotation from Affymetrix GeneChip® Human Gene 1.0 ST Array and the KEGG pathways downloaded from MsigDB, for example, by assumming that 20% of the pathways being perturbed, 30% of the genes in the perturbed pathways being perturbed, the avarage differences between groups being 0.7, the correlation coefficient between genes being 0.8, the number of groups being 3, the number of samples from each group being 40, and the numer of simulatio being 100, first set the working directory to be the folder where you unzip PBS-R.zip. Then run the following commands in R to save all the simulated datasets to my_simulation under your PBS-R folder:
+```
+source("simulation_codes.R")
+msigdb.filepath<-"./Datasets/"
+array.anno.filepath<-"./Datasets/HuGene"
+pathway.name.prefix<-"KEGG_"
+output.dir<-"./my_simulation"
+simul.dependent(0.2,0.3,0.7,0.8,3,40,msigdb.filepath,pathway.name.prefix,output.dir,100,array.anno.filepath)
+```
+
+###To run PBS
+To calculate the pathway based distance score by PBS, for example, the simulated dataset 1 with independent setting based on the KEGG pathways defined in the C2 gene sets from MsigDB database, go to the file PBS-R/Run.simul1_C2_KEGG.R and change the file pathnames to reflect the location of the GSEA directory in your machine. For example if you expanded the ZIP file under your directory "C:/my_directory" you need to change the line: 
 ```
 GSEA.program.location <- "d:/CGP2005/GSEA/GSEA-P-R/GSEA.1.0.R"  
 ```
