@@ -70,6 +70,8 @@ You need to install R release 3.0 or later.
 ###To simulate
 There are two ways to simulate data sets as described in the manuscript, **independent** and **dependent**.
 
+The independent way simulate data by assumming that genes are independent from each other. The function to use for this simulation is simul.independent defined in the simulation_codes.R file. For explanation of the arguments and the return values, please read the comments in simulation_codes.R for the function simul.independent. To run the simulation, for example, to
+
 To run, for example, the simulated dataset 1 with independent setting with the C2 gene set database go to the file PBS-R/Run.Simul1_C2.R and change the file pathnames to reflect the location of the GSEA directory in your machine. For example if you expanded the ZIP file under your directory "C:/my_directory" you need to change the line: 
 ```
 GSEA.program.location <- "d:/CGP2005/GSEA/GSEA-P-R/GSEA.1.0.R"  
