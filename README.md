@@ -78,8 +78,7 @@ msigdb.filepath<-"./Datasets/"
 array.anno.filepath<-"./Datasets/HuGene"
 pathway.name.prefix<-"KEGG_"
 output.dir<-"./my_simulation"
-simul.independent(pathway.perc=0.2,gene.perc=0.3,delta=0.7,cluster.num=3,samplesize.percluster=40,msigdb.filepath,pathway.name.prefix,output.dir,simul.times=100,array.anno.filepath)
-
+simul.independent(0.2,0.3,0.7,3,40,msigdb.filepath,pathway.name.prefix,output.dir,100,array.anno.filepath)
 ```
 
 To run, for example, the simulated dataset 1 with independent setting with the C2 gene set database go to the file PBS-R/Run.Simul1_C2.R and change the file pathnames to reflect the location of the GSEA directory in your machine. For example if you expanded the ZIP file under your directory "C:/my_directory" you need to change the line: 
