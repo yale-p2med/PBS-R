@@ -12,6 +12,8 @@ Distance based unsupervised clustering of the gene expression data is commonly u
 PBS is a software package that assesses the biological differences between samples using gene expression data by assuming that ontologically defined biological pathways in biologically similar samples have similar behavior. This package includes three parts: simulation, pathways and pbs_distance. The simulation codes generate the simulated data as described Yan et al. (2015). The pathways part provides different types of pre-defined pathways prepared in the required format for the pbs_distane codes. The pbs_distancec part calculate the pathway based distance score between subjects using the gene expression data and pre-defined pathways. 
 
 ## Instructions
+
+###To set up
 You need to install R release 3.0 or later.
 
 1. Copy the PBS-R.ZIP file to your computer. 
@@ -47,8 +49,8 @@ You need to install R release 3.0 or later.
 
   * Directories with results of running the examples described in the paper:
     ```
-    PBS-R/asthma_C2/
-                      asthma
+    PBS-R/simul_independent_C2/
+                                simul1
     ```
 
   * One page R scripts to run the examples described in the paper:
@@ -64,6 +66,9 @@ You need to install R release 3.0 or later.
                   Run.Lung_Michigan_outcome.R
                   Run.P53_C2.R
     ```
+
+###To simulate
+There are two ways to simulate data sets as described in the manuscript, **independent** and **dependent**.
 
 To run, for example, the simulated dataset 1 with independent setting with the C2 gene set database go to the file PBS-R/Run.Simul1_C2.R and change the file pathnames to reflect the location of the GSEA directory in your machine. For example if you expanded the ZIP file under your directory "C:/my_directory" you need to change the line: 
 ```
