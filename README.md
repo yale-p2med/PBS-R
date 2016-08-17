@@ -25,7 +25,7 @@ You need to install R release 3.0 or later.
 
     ```
     PBS-R/PBS.1.0.R
-    PBS-R/simulation.R
+    PBS-R/simulation_codes.R
     PBS-R/my_functions.R
     ```
 
