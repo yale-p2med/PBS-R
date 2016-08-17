@@ -14,7 +14,7 @@ PBS is a software package that assesses the biological differences between sampl
 ## Instructions
 
 ###To set up
-You need to install R release 3.0 or later.
+You need to install R release 3.0 or later. R packages "mclust" is needed. Analysis in the manuscript used version 4.4.
 
 1. Copy the PBS-R.ZIP file to your computer. 
 
@@ -25,46 +25,36 @@ You need to install R release 3.0 or later.
 
     ```
     PBS-R/PBS.1.0.R
-    PBS-R/simulation.R
+    PBS-R/simulation_codes.R
+    PBS-R/my_functions.R
+    PBS-R/RUN.indsimul1.c2.R
     ```
 
-  * Directory with example datasets, gct file:
+  * Directory with example datasets:
 
     ```
     PBS-R/Datasets/        
-                    asthma.gct
-                    simul1_independent.gct
-                    simul1_depedent.gct
+                    HuGene-1_0-st-v1.na32.hg19.transcript.csv.gz
+                    independent_simulated_data1_datamatrix.gct
+                    independent_simulated_data1_perturbedgenes.txt
+                    independent_simulated_data1_perturbedpathways.txt
+                    dependent_simulated_data1_datamatrix.gct
+                    dependent_simulated_data1_perturbedgenes.txt
+                    dependent_simulated_data1_perturbedpathways.txt
     ```
 
   * Directory with gene set databases, gmt files:
 
     ```
     PBS-R/GeneSetDatabases/
-                            C1.gmt
-                            C2.gmt
-                            C3.gmt
-                            C4.gmt
+                            c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt
     ```
 
   * Directories with results of running the examples described in the paper:
     ```
-    PBS-R/simul_independent_C2/
-                                simul1
-    ```
-
-  * One page R scripts to run the examples described in the paper:
-    ```
-    GSEA/GSEA-P-R/
-                  Run.Gender_C1.R
-                  Run.Gender_C2.R
-                  Run.Leukemia_C1.R
-                  Run.Lung_Boston_C2.R
-                  Run.Lung_Stanford_C2.R
-                  Run.Lung_Michigan_C2.R
-                  Run.Lung_Boston_outcome.R
-                  Run.Lung_Michigan_outcome.R
-                  Run.P53_C2.R
+    PBS-R/results_simul_independent_c2/
+                                        independent_simul1_clustering_classmatrix.txt
+                                        independent_simul1_distmatrix.txt
     ```
 
 ###To simulate
@@ -74,57 +64,49 @@ The independent way simulates data by assumming that genes are independent from 
 
 ```
 source("simulation_codes.R")
-msigdb.filepath<-"./Datasets/"
-array.anno.filepath<-"./Datasets/HuGene"
+source("my_functions.R")
+msigdb.filepath<-"./GeneSetDatabases/c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt"
+array.anno.filepath<-"./Datasets/HuGene-1_0-st-v1.na32.hg19.transcript.csv"
 pathway.name.prefix<-"KEGG_"
-output.dir<-"./my_simulation"
+output.dir<-"./Datasets"
 simul.independent(0.2,0.3,0.7,3,40,msigdb.filepath,pathway.name.prefix,output.dir,100,array.anno.filepath)
 ```
 
 The dependent way simulates data assumming that genes are dependent with each other. The function to use for this simulation is simul.dependent defined in the simulation_codes.R file. For explanation of the arguments and the return values, please read the comments in simulation_codes.R for the function simul.dependent. To run the simulation using array annotation from Affymetrix GeneChip® Human Gene 1.0 ST Array and the KEGG pathways downloaded from MsigDB, for example, by assumming that 20% of the pathways being perturbed, 30% of the genes in the perturbed pathways being perturbed, the avarage differences between groups being 0.7, the correlation coefficient between genes being 0.8, the number of groups being 3, the number of samples from each group being 40, and the numer of simulatio being 100, first set the working directory to be the folder where you unzip PBS-R.zip. Then run the following commands in R to save all the simulated datasets to my_simulation under your PBS-R folder:
 ```
 source("simulation_codes.R")
-msigdb.filepath<-"./Datasets/"
-array.anno.filepath<-"./Datasets/HuGene"
+source("my_functions.R")
+msigdb.filepath<-"./GeneSetDatabases/c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt"
+array.anno.filepath<-"./Datasets/HuGene-1_0-st-v1.na32.hg19.transcript.csv"
 pathway.name.prefix<-"KEGG_"
-output.dir<-"./my_simulation"
+output.dir<-"./Datasets"
 simul.dependent(0.2,0.3,0.7,0.8,3,40,msigdb.filepath,pathway.name.prefix,output.dir,100,array.anno.filepath)
 ```
 
 ###To run PBS
 To calculate the pathway based distance score by PBS, for example, the simulated dataset 1 with independent setting based on the KEGG pathways defined in the C2 gene sets from MsigDB database, go to the file PBS-R/Run.simul1_C2_KEGG.R and change the file pathnames to reflect the location of the GSEA directory in your machine. For example if you expanded the ZIP file under your directory "C:/my_directory" you need to change the line: 
 ```
-GSEA.program.location <- "d:/CGP2005/GSEA/GSEA-P-R/GSEA.1.0.R"  
+source("PBS.1.0.R")
+data.filepath<-"./Datasets/independent_simulated_data1_datamatrix.gct"
+msigdb.filepath<-"./GeneSetDatabases/c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt"
+pathway.name.prefix<-"KEGG_"
+output.dir<-"./results_simul_independent_c2"
+result.name.prefix<-"independent_simul1"
+pbs.cal(data.filepath,msigdb.filepath,pathway.name.prefix,output.dir,result.name.prefix)
 ```
-To:
-```
-GSEA.program.location <- "c:my_directory/GSEA/GSEA-P-R/GSEA.1.0.R"
-```
- And the same change to each pathname in that file: you need to replace "d:/CGP2005" with "C"/my_directory".
-
- You may also want to change the line:
-
-doc.string            = "Leukemia_C1",
-
-To:
-
-doc.string            = "my_run_of_Leukemia_C1",
-
-or any other prefix label you want to give your results. This way you won't overwrite the original results that come in those directories and can use them for comparison with the results of you own run. 
-
-After the pathnames have been changed to reflect the location of the directories in your machine to run GSEA program just open the R GUI and paste the content of the Run.<example>.R files on it.  Fro example to run the Leukemia vs. C1 example use the contents of the file "Run.Leukemia_C1.R" The program is self-contained and should run and produce the results under the directory "C:my_directory/GSEA/GSEA-P-R/Leukemia_C1". These files are set up with the parameters used in the examples of the paper (e.g. to produce detailed results for the significant and top 20 gene sets). You may want to start using these parameters and change them only when needed and when you get mnore experience with the program. For details of what are the effect of changing some of the parameters see the Supporting Information document.
+If you want to run PBS from a different place without setting up a default working directory, just change all the relative file paths to absolute file paths.
 
 If you want to run a completely new dataset the easiest way is:
+- Create a new directory: e.g. GSEA/GSEA-P-R/my_dataset, where you can store the inputs and outputs of running GSEA on those files. 
 
-i) Create a new directory: e.g. GSEA/GSEA-P-R/my_dataset, where you can store the inputs and outputs of running GSEA on those files. 
-ii) Convert manually your files to *.gct (expression dataset) and *.cls (phenotype labels)
-iii) Use Run.Leukemia_C1.R as a template to make a new script to run your data.
-iv) Change the relevant pathnames to point to your input files in directory my_dataset. Change the doc.string to an approprote prefix name for your files.
-v) Cut and paste the contents of this new script file in the R GUI to run it. The results will be stored in my_directory.
+- Convert manually your files to *.gct (gene expression dataset) and *.gmt (pathway annotation file).
+- Use RUN.indsimul1.c2.R as a template to make a new version to run your data.
+- Change the relevant pathnames to point to your input files in directory my_dataset. 
+- Copy and paste the contents of this new version in the R GUI to run it. The results will be stored in the specified output.dir.
 
-The GSEA-P-R program reads input files in *.gct, *.cls and *.gmt formats. As you can see from the examples's files these are simple tab separated ASCII files. If your datasets are not in this format you can use a text editor to convert them. If you start with a tab separated ASCII file tipically the conversion would consist in  modifying the header lines on top of the file.
+The PBS-R program reads input files in *.gct and *.gmt formats. As you can see from the examples's files these are simple tab separated ASCII files. If your datasets are not in this format you can use a text editor to convert them. If you start with a tab separated ASCII file tipically the conversion would consist in  modifying the header lines on top of the file. Note that our gct file format is a little different from the GSEA gct file format. The gct file format the PBS works with contains a matrix with rows being genes and columns being samples. The row and column names are presented as the first column and the first row, respectively. The gmt file format follows the gmt format by [GSEA] (http://www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29).
 
-If you have questions or problems running or using the program please  send them to gsea@broad.mit.edu. Also lets us know if you find GSEA a useful tool in your work.
+If you have questions or problems running or using the program please  send them to xiting.yan@yale.edu. Also let us know if you find PBS a useful tool in your work.
 
 
 
