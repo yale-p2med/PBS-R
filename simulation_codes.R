@@ -14,7 +14,7 @@ return(temp.list)
 #=============================================================================================
 
 
-simul.independent<-function(pathway.perc=0.2,gene.perc=0.2,delta=0.5,cluster.num=3,samplesize.percluster=40,msigdb.filepath,pathway.name.prefix,output.dir,simul.times=100,array.anno.filepath){
+simul.independent<-function(pathway.perc=0.2,gene.perc=0.2,delta=0.5,cluster.num=3,samplesize.percluster=40,msigdb.filepath,pathway.name.prefix="KEGG_",output.dir,simul.times=100,array.anno.filepath){
 
 #####################################
 # simul.independent generates the simulated data matrices for given parameter settings:
@@ -32,17 +32,18 @@ simul.independent<-function(pathway.perc=0.2,gene.perc=0.2,delta=0.5,cluster.num
 #	samplesize.percluster	the number of samples simulated for each given group. default 40
 #	msigdb.filepath			the file that defines the pathways downloaded from MsigDB.
 #	pathway.name.prefix		the type of pathways in MsigDB used to calculate the distance score. 
-#							default "KEGG"
+#							default "KEGG_"
 #	output.dir				the folder to put the results in.
 #	simul.times				the total number of simulations to do. default 100
-#	array.anno.filepath		the file that has the annotation for all the probe sets or genes to be 
+#	array.anno.filepath		the csv file that has the annotation for all the probe sets or genes to be 
 #							simulated. This file needs to have the same format as the example 
-#							annotation file for the Affymetrix HuGen 1.0 ST array.
+#							annotation file HuGene-1_0-st-v1.na32.hg19.transcript.csv. The first column
+#							should have the IDs present in the msigdb.filepath.
 #
 # Values:
 #	
 #	simul.dependent will generate simul.times different set of files with each set presenting one 
-#	simulated data. Each simulation include three files: simulated_data*_datamatrix.txt,
+#	simulated data. Each simulation include three files: simulated_data*_datamatrix.gct,
 #	simulated_data*_perturbedpathways.txt and simulated_data*_perturbedgenes.txt. All files will be 
 #	put under output.dir. 
 # 	
@@ -68,9 +69,10 @@ dir.create(output.dir,recursive = TRUE)
 }
 
 #source(myfunction.filepath)
-temp.data<-read.table(array.anno.filepath,sep="\t",header=T,row.names=1)
+temp.data<-read.csv(array.anno.filepath,comment.char="#")
+#temp.data<-read.table(array.anno.filepath,sep="\t",header=T,row.names=1)
 gene.num<-nrow(temp.data)
-ps.names<-rownames(temp.data)
+ps.names<-as.matrix(temp.data)[,1]
 sample.num<-cluster.num*samplesize.percluster
 
 # load in the pathway info from given category
@@ -83,10 +85,10 @@ pathway.list<-msigdb.pathway.list[substr(names(msigdb.pathway.list),1,nchar(path
 }
 
 # simulate the gene expression data matrix for each cluster
-for(simulate.index in 1:simulate.times){
+for(simulate.index in 1:simul.times){
 
 data.matrix<-numeric()
-output.filepath<-file.path(output.dir,paste("simulated_data",simulate.index,"_datamatrix.txt",sep=""))
+output.filepath<-file.path(output.dir,paste("simulated_data",simulate.index,"_datamatrix.gct",sep=""))
 
 # randomly choose the pathways to perturb
 pathway2perturb<-sample(1:length(pathway.list),floor(length(pathway.list)*pathway.perc),replace=F)
@@ -139,7 +141,7 @@ cat("\n",file=gene.output.filepath,append=T)
 # PART II: simulate the gene expression data when genes are not independent
 #=============================================================================================
 
-simul.dependent<-function(pathway.perc=0.2,gene.perc=0.2,delta=0.5,r=0.8,cluster.num=3,samplesize.percluster=40,msigdb.filepath,pathway.name.prefix,output.dir,simul.times=100,array.anno.filepath){
+simul.dependent<-function(pathway.perc=0.2,gene.perc=0.2,delta=0.5,r=0.8,cluster.num=3,samplesize.percluster=40,msigdb.filepath,pathway.name.prefix="KEGG_",output.dir,simul.times=100,array.anno.filepath){
 
 #####################################
 # simul.independent generates the simulated data matrices for given parameter settings:
@@ -158,17 +160,18 @@ simul.dependent<-function(pathway.perc=0.2,gene.perc=0.2,delta=0.5,r=0.8,cluster
 #	samplesize.percluster	the number of samples simulated for each given group. default 40
 #	msigdb.filepath			the file that defines the pathways downloaded from MsigDB.
 #	pathway.name.prefix		the type of pathways in MsigDB used to calculate the distance score. 
-#							default "KEGG"
+#							default "KEGG_"
 #	output.dir				the folder to put the results in.
 #	simul.times				the total number of simulations to do. default 100
-#	array.anno.filepath		the file that has the annotation for all the probe sets or genes to be 
+#	array.anno.filepath		the csv file that has the annotation for all the probe sets or genes to be 
 #							simulated. This file needs to have the same format as the example 
-#							annotation file for the Affymetrix HuGen 1.0 ST array.
+#							annotation file HuGene-1_0-st-v1.na32.hg19.transcript.csv. The first column
+#							should have the IDs present in the msigdb.filepath.
 #
 # Values:
 #	
 #	simul.dependent will generate simul.times different set of files with each set presenting one 
-#	simulated data. Each simulation include three files: simulated_data*_datamatrix.txt,
+#	simulated data. Each simulation include three files: simulated_data*_datamatrix.gct,
 #	simulated_data*_perturbedpathways.txt and simulated_data*_perturbedgenes.txt. All files will be 
 #	put under output.dir. 
 # 	
@@ -192,9 +195,10 @@ dir.create(output.dir,recursive = TRUE)
 }
 
 # use the setting provided in the array.anno.filepath
-temp.data<-read.table(array.anno.filepath,sep="\t",header=T,row.names=1)
+temp.data<-read.csv(array.anno.filepath,comment.char="#")
+#temp.data<-read.table(array.anno.filepath,sep="\t",header=T,row.names=1)
 gene.num<-nrow(temp.data)
-ps.names<-rownames(temp.data)
+ps.names<-as.matrix(temp.data)[,1]
 sample.num<-cluster.num*samplesize.percluster
 
 # load in the pathway info from KEGG
@@ -207,10 +211,10 @@ pathway.list<-msigdb.pathway.list[substr(names(msigdb.pathway.list),1,nchar(path
 
 library(MASS)
 # simulate the gene expression data matrix for each cluster
-for(simulate.index in 1:simulate.times){
+for(simulate.index in 1:simul.times){
 
 data.matrix<-numeric()
-output.filepath<-file.path(output.dir,paste("simulated_data",simulate.index,"_datamatrix.txt",sep=""))
+output.filepath<-file.path(output.dir,paste("simulated_data",simulate.index,"_datamatrix.gct",sep=""))
 
 # randomly choose the pathways to perturb
 pathway2perturb<-sample(1:length(pathway.list),floor(length(pathway.list)*pathway.perc),replace=F)
