@@ -106,7 +106,7 @@ If you want to run a completely new dataset the easiest way is:
 
 The PBS-R program reads input files in *.gct and *.gmt formats. As you can see from the examples's files these are simple tab separated ASCII files. If your datasets are not in this format you can use a text editor to convert them. If you start with a tab separated ASCII file tipically the conversion would consist in  modifying the header lines on top of the file. Note that our gct file format is a little different from the GSEA gct file format. The gct file format the PBS works with contains a matrix with rows being genes and columns being samples. The row and column names are presented as the first column and the first row, respectively. The gmt file format follows the gmt format by [GSEA] (http://www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GMT:_Gene_Matrix_Transposed_file_format_.28.2A.gmt.29).
 
-If you have questions or problems running or using the program please  send them to gsea@broad.mit.edu. Also lets us know if you find GSEA a useful tool in your work.
+If you have questions or problems running or using the program please  send them to xiting.yan@yale.edu. Also let us know if you find PBS a useful tool in your work.
 
 
 
