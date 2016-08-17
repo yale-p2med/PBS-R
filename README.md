@@ -35,10 +35,10 @@ You need to install R release 3.0 or later. R packages "mclust" is needed. Analy
     ```
     PBS-R/Datasets/        
                     HuGene-1_0-st-v1.na32.hg19.transcript.csv.gz
-                    independent_simulated_data1_datamatrix.txt
+                    independent_simulated_data1_datamatrix.gct
                     independent_simulated_data1_perturbedgenes.txt
                     independent_simulated_data1_perturbedpathways.txt
-                    dependent_simulated_data1_datamatrix.txt
+                    dependent_simulated_data1_datamatrix.gct
                     dependent_simulated_data1_perturbedgenes.txt
                     dependent_simulated_data1_perturbedpathways.txt
     ```
@@ -87,7 +87,7 @@ simul.dependent(0.2,0.3,0.7,0.8,3,40,msigdb.filepath,pathway.name.prefix,output.
 To calculate the pathway based distance score by PBS, for example, the simulated dataset 1 with independent setting based on the KEGG pathways defined in the C2 gene sets from MsigDB database, go to the file PBS-R/Run.simul1_C2_KEGG.R and change the file pathnames to reflect the location of the GSEA directory in your machine. For example if you expanded the ZIP file under your directory "C:/my_directory" you need to change the line: 
 ```
 source("PBS.1.0.R")
-data.filepath<-"./Datasets/independent_simulated_data1_datamatrix.txt"
+data.filepath<-"./Datasets/independent_simulated_data1_datamatrix.gct"
 msigdb.filepath<-"./GeneSetDatabases/c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt"
 pathway.name.prefix<-"KEGG_"
 output.dir<-"./results_simul_independent_c2"
@@ -99,12 +99,12 @@ If you want to run PBS from a different place without setting up a default worki
 If you want to run a completely new dataset the easiest way is:
 - Create a new directory: e.g. GSEA/GSEA-P-R/my_dataset, where you can store the inputs and outputs of running GSEA on those files. 
 
-- Convert manually your files to *.gct (gene expression dataset) and *.gmt (pathway annotation file)
-- Use the above commands in R as a template to make a new version to run your data.
+- Convert manually your files to *.gct (gene expression dataset) and *.gmt (pathway annotation file).
+- Use RUN.indsimul1.c2.R as a template to make a new version to run your data.
 - Change the relevant pathnames to point to your input files in directory my_dataset. 
 - Copy and paste the contents of this new version in the R GUI to run it. The results will be stored in the specified output.dir.
 
-The PBS-R program reads input files in *.txt and *.gmt formats. As you can see from the examples's files these are simple tab separated ASCII files. If your datasets are not in this format you can use a text editor to convert them. If you start with a tab separated ASCII file tipically the conversion would consist in  modifying the header lines on top of the file.
+The PBS-R program reads input files in *.gct and *.gmt formats. As you can see from the examples's files these are simple tab separated ASCII files. If your datasets are not in this format you can use a text editor to convert them. If you start with a tab separated ASCII file tipically the conversion would consist in  modifying the header lines on top of the file. Note that our gct file format is a little different from the GSEA gct file format. The gct file format the PBS works with contains a matrix with rows being genes and columns being samples. The row and column names are presented as the first column and the first row, respectively. The gmt file format follows the gmt format by GSEA ().
 
 If you have questions or problems running or using the program please  send them to gsea@broad.mit.edu. Also lets us know if you find GSEA a useful tool in your work.
 
