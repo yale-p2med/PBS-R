@@ -106,11 +106,11 @@ pbs.cal(data.filepath,msigdb.filepath,pathway.name.prefix,output.dir,result.name
 If you want to run the above commands from a different place without setting up a default working directory, just change all the relative file paths to absolute file paths.
 
 If you want to run a completely new dataset the easiest way is:
-- Create a new directory: e.g. GSEA/GSEA-P-R/my_dataset, where you can store the inputs and outputs of running GSEA on those files. 
+i)  Create a new directory: e.g. GSEA/GSEA-P-R/my_dataset, where you can store the inputs and outputs of running GSEA on those files. 
 ii) Convert manually your files to *.txt (gene expression dataset) and *.gmt (pathway annotation file)
-iii) Use the above commands in R as a template to make a new version to run your data.
+iii)Use the above commands in R as a template to make a new version to run your data.
 iv) Change the relevant pathnames to point to your input files in directory my_dataset. 
-v) Cut and paste the contents of this new script file in the R GUI to run it. The results will be stored in my_directory.
+v)  Cut and paste the contents of this new script file in the R GUI to run it. The results will be stored in my_directory.
 
 The GSEA-P-R program reads input files in *.gct, *.cls and *.gmt formats. As you can see from the examples's files these are simple tab separated ASCII files. If your datasets are not in this format you can use a text editor to convert them. If you start with a tab separated ASCII file tipically the conversion would consist in  modifying the header lines on top of the file.
 
