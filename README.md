@@ -33,7 +33,7 @@ You need to install R release 3.0 or later.
 
     ```
     PBS-R/Datasets/        
-                    HuGene-1_0-st-v1.na32.hg19.probeset.txt.tar.gz  
+                    HuGene-1_0-st-v1.na32.hg19.transcript.csv.gz  
                     independent_simulated_data1_datamatrix.txt
                     independent_simulated_data1_perturbedgenes.txt
                     independent_simulated_data1_perturbedpathways.txt
@@ -75,7 +75,7 @@ The independent way simulates data by assumming that genes are independent from 
 source("simulation_codes.R")
 source("my_functions.R")
 msigdb.filepath<-"./GeneSetDatabases/c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt"
-array.anno.filepath<-"./Datasets/HuGene-1_0-st-v1.na32.hg19.probeset.txt"
+array.anno.filepath<-"./Datasets/HuGene-1_0-st-v1.na32.hg19.transcript.csv"
 pathway.name.prefix<-"KEGG_"
 output.dir<-"./Datasets"
 simul.independent(0.2,0.3,0.7,3,40,msigdb.filepath,pathway.name.prefix,output.dir,100,array.anno.filepath)
@@ -86,7 +86,7 @@ The dependent way simulates data assumming that genes are dependent with each ot
 source("simulation_codes.R")
 source("my_functions.R")
 msigdb.filepath<-"./GeneSetDatabases/c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt"
-array.anno.filepath<-"./Datasets/HuGene-1_0-st-v1.na32.hg19.probeset.txt"
+array.anno.filepath<-"./Datasets/HuGene-1_0-st-v1.na32.hg19.transcript.csv"
 pathway.name.prefix<-"KEGG_"
 output.dir<-"./Datasets"
 simul.dependent(0.2,0.3,0.7,0.8,3,40,msigdb.filepath,pathway.name.prefix,output.dir,100,array.anno.filepath)
