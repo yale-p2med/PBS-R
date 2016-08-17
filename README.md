@@ -26,25 +26,24 @@ You need to install R release 3.0 or later.
     ```
     PBS-R/PBS.1.0.R
     PBS-R/simulation.R
+    PBS-R/my_functions.R
     ```
 
-  * Directory with example datasets, gct file:
+  * Directory with example datasets:
 
     ```
     PBS-R/Datasets/        
-                    asthma.gct
-                    simul1_independent.gct
-                    simul1_depedent.gct
+                    HuGene-1_0-st-v1.na32.hg19.probeset.txt.tar.gz  
+                    independent_simulated_data1_datamatrix.txt
+                    independent_simulated_data1_perturbedgenes.txt
+                    independent_simulated_data1_perturbedpathways.txt
     ```
 
   * Directory with gene set databases, gmt files:
 
     ```
     PBS-R/GeneSetDatabases/
-                            C1.gmt
-                            C2.gmt
-                            C3.gmt
-                            C4.gmt
+                            c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt
     ```
 
   * Directories with results of running the examples described in the paper:
@@ -74,25 +73,38 @@ The independent way simulates data by assumming that genes are independent from 
 
 ```
 source("simulation_codes.R")
-msigdb.filepath<-"./Datasets/"
-array.anno.filepath<-"./Datasets/HuGene"
+source("my_functions.R")
+msigdb.filepath<-"./GeneSetDatabases/c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt"
+array.anno.filepath<-"./Datasets/HuGene-1_0-st-v1.na32.hg19.probeset.txt"
 pathway.name.prefix<-"KEGG_"
-output.dir<-"./my_simulation"
+output.dir<-"./Datasets"
 simul.independent(0.2,0.3,0.7,3,40,msigdb.filepath,pathway.name.prefix,output.dir,100,array.anno.filepath)
 ```
 
 The dependent way simulates data assumming that genes are dependent with each other. The function to use for this simulation is simul.dependent defined in the simulation_codes.R file. For explanation of the arguments and the return values, please read the comments in simulation_codes.R for the function simul.dependent. To run the simulation using array annotation from Affymetrix GeneChip® Human Gene 1.0 ST Array and the KEGG pathways downloaded from MsigDB, for example, by assumming that 20% of the pathways being perturbed, 30% of the genes in the perturbed pathways being perturbed, the avarage differences between groups being 0.7, the correlation coefficient between genes being 0.8, the number of groups being 3, the number of samples from each group being 40, and the numer of simulatio being 100, first set the working directory to be the folder where you unzip PBS-R.zip. Then run the following commands in R to save all the simulated datasets to my_simulation under your PBS-R folder:
 ```
 source("simulation_codes.R")
-msigdb.filepath<-"./Datasets/"
-array.anno.filepath<-"./Datasets/HuGene"
+source("my_functions.R")
+msigdb.filepath<-"./GeneSetDatabases/c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt"
+array.anno.filepath<-"./Datasets/HuGene-1_0-st-v1.na32.hg19.probeset.txt"
 pathway.name.prefix<-"KEGG_"
-output.dir<-"./my_simulation"
+output.dir<-"./Datasets"
 simul.dependent(0.2,0.3,0.7,0.8,3,40,msigdb.filepath,pathway.name.prefix,output.dir,100,array.anno.filepath)
 ```
 
 ###To run PBS
 To calculate the pathway based distance score by PBS, for example, the simulated dataset 1 with independent setting based on the KEGG pathways defined in the C2 gene sets from MsigDB database, go to the file PBS-R/Run.simul1_C2_KEGG.R and change the file pathnames to reflect the location of the GSEA directory in your machine. For example if you expanded the ZIP file under your directory "C:/my_directory" you need to change the line: 
+```
+source("PBS.1.0.R")
+source("my_functions.R")
+data.filepath<-"./Datasets/independent_simulated_data1_datamatrix.txt"
+msigdb.filepath<-"./GeneSetDatabases/c2.cp.v3.0.symbols_mapped_to_HuGene_1_0_st.chip.gm.gmt"
+array.anno.filepath<-"./Datasets/HuGene-1_0-st-v1.na32.hg19.probeset.txt"
+pathway.name.prefix<-"KEGG_"
+output.dir<-"./results_simul_independent_c2"
+pbs.cal(data.filepath,array.anno.filepath,)
+simul.independent(0.2,0.3,0.7,3,40,msigdb.filepath,pathway.name.prefix,output.dir,100,array.anno.filepath)
+```
 ```
 GSEA.program.location <- "d:/CGP2005/GSEA/GSEA-P-R/GSEA.1.0.R"  
 ```
